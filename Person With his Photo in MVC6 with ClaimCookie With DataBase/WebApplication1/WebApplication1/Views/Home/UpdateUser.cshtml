@@ -1,0 +1,61 @@
+﻿@using WebApplication1.Models;
+@model WebApplication1.Models.Istifadeciler
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "AddUsers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row" style="display:flex; justify-content:center;">
+
+    <div class="col-md-4">
+        <h4>Add Your Information</h4>
+        <br />
+        @{
+            WebSiteContext w = new WebSiteContext();
+            var item = w.Istifadecilers.Find(ViewBag.Id);
+
+            <form action="UpdateUser" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <input type="number" name ="Id" value="@item.Id" style="display:none;" />
+
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" name="Name" value="@item.Name" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Surname" class="control-label"></label>
+                    <input asp-for="Surname" class="form-control" name="Surname" value="@item.Surname" />
+                <span asp-validation-for="Surname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label"></label>
+                    <input type="file" class="form-control" name="Sekil"/>
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Uni" class="control-label"></label>
+                    <input asp-for="Uni" class="form-control" name="Uni" value="@item.Uni" />
+                <span asp-validation-for="Uni" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="About" class="control-label"></label>
+                    <input asp-for="About" class="form-control" name="About" value="@item.About" />
+                <span asp-validation-for="About" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="display:flex; justify-content:center;">
+                <input type="submit" value="Update" class="btn btn-default" />
+            </div>
+        </form>
+        }
+    </div>
+</div>
+
+<div style="display:flex; justify-content:center;">
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+
